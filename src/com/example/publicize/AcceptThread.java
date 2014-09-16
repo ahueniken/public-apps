@@ -6,17 +6,23 @@ import java.util.UUID;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
+import android.os.Handler;
 import android.util.Log;
 
 public class AcceptThread extends Thread {
 	private final BluetoothServerSocket mmServerSocket;
 	private BluetoothAdapter mBluetoothAdapter;
 	private UUID myUUID = UUID.fromString("cf4bc374-961c-46fb-be00-9d0a95e4fb93");
-	public AcceptThread() {
+    private ConnectedListener mListener;
+    
+	
+	public AcceptThread(ConnectedListener listener) {
 		// Use a temporary object that is later assigned to mmServerSocket,
 		// because mmServerSocket is final
 		BluetoothServerSocket tmp = null;
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+		mListener = listener;
+
 		try {
 			// MY_UUID is the app's UUID string, also used by the client code
 			tmp = mBluetoothAdapter.listenUsingRfcommWithServiceRecord("Publicize", myUUID
@@ -40,7 +46,7 @@ public class AcceptThread extends Thread {
 			// If a connection was accepted
 			if (socket != null) {
 				// Do work to manage the connection (in a separate thread)
-				manageConnectedSocket(socket);
+				mListener.onConnected(socket);
 				try {
 					mmServerSocket.close();
 				} catch (IOException e) {
@@ -50,11 +56,6 @@ public class AcceptThread extends Thread {
 				break;
 			}
 		}
-	}
-
-	private void manageConnectedSocket(BluetoothSocket socket) {
-		// TODO Auto-generated method stub
-		Log.i("publicize", "We have a socket!");
 	}
 
 	/** Will cancel the listening socket, and cause the thread to finish */

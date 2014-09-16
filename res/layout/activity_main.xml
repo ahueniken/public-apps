@@ -10,34 +10,39 @@
 
     <TextView
         android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-    
-	<Button
-	    android:id="@+id/startButton"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:text="Start Service"
-		android:onClick="startHeadlessApp" 
-		android:layout_below="@id/title"
-	></Button>
-	
-	<Button
-	   	android:id="@+id/stopServiceButton"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:text="Stop Service"
-		android:onClick="stopHeadlessApp" 
-		android:layout_below="@id/startButton"
-	></Button>
-	
-	<Button
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:text="Start Server"
-		android:onClick="startBluetoothServer" 
-		android:layout_below="@id/stopServiceButton"
-	></Button>
+        android:layout_alignParentBottom="true"
+        android:onClick="startHeadlessApp"
+        android:text="Start Service" >
+    </Button>
+
+    <Button
+        android:id="@+id/stopServiceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/startButton"
+        android:onClick="stopHeadlessApp"
+        android:text="Stop Service" >
+    </Button>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/stopServiceButton"
+        android:onClick="startBluetoothServer"
+        android:text="Start Server" >
+    </Button>
 
 </RelativeLayout>
