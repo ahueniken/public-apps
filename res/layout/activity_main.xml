@@ -6,16 +6,29 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/white"
     tools:context="com.example.publicize.MainActivity" >
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:paddingBottom="50sp"
         android:text="@string/hello_world"
         android:textAlignment="center"
         android:textSize="40sp"
         android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:scaleType="fitCenter" 
+        android:visibility="invisible"
+        android:layout_above="@id/title"
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:id="@+id/startButton"
@@ -23,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:onClick="startHeadlessApp"
-        android:text="Start Service" >
+        android:text="Broadcast your apps" >
     </Button>
 
     <Button
@@ -33,7 +46,7 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@id/startButton"
         android:onClick="stopHeadlessApp"
-        android:text="Stop Service" >
+        android:text="Stop Broadcasting" >
     </Button>
 
     <Button
@@ -42,7 +55,7 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@id/stopServiceButton"
         android:onClick="startBluetoothServer"
-        android:text="Start Server" >
+        android:text="Start Receiving" >
     </Button>
 
 </RelativeLayout>
